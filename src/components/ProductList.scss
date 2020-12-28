@@ -1,0 +1,14 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 240px);
+  column-gap: 10%;
+  row-gap: 50px;
+  justify-items: center;
+  justify-content: center;
+
+  h1 {
+    grid-row: 1;
+    grid-column: 1/-1;
+    width: 100%;
+  }
+}

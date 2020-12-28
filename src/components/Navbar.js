@@ -1,5 +1,5 @@
 import React from 'react';
-import './Navbar.css';
+import './Navbar.scss';
 import logo from '../assets/globant-shops.svg';
 import cartImg from '../assets/cart.svg';
 
@@ -15,7 +15,7 @@ const Navbar = () => {
         <li>
           <div>
             <img src={cartImg} alt="Cart icon" />
-            <span>3</span>
+            <span className="has-text-centered">3</span>
           </div>
         </li>
       </ul>

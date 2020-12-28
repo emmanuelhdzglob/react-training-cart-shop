@@ -1,0 +1,24 @@
+.filter-selector {
+  height: 100vh;
+  width: 260px;
+  padding: 50px 20px;
+  background-color: white;
+  border-right: 1px solid #cfcfcf;
+  position: fixed;
+  top: 93px;
+  left: 0;
+  z-index: 1;
+  overflow-x: hidden;
+
+  input {
+    margin-right: 5px;
+  }
+
+  .filter-type {
+    margin: 15px 0;
+  }
+
+  .field {
+    margin: 8px 0;
+  }
+}
