@@ -7,7 +7,7 @@ import cartImg from '../assets/cart.svg';
 const Navbar = ({ cart }) => {
   return (
     <nav className="navbar">
-      <ul>
+      <ul className="is-display-flex is-align-items-center is-justify-content-space-between">
         <li>
           <a href="/">
             <img src={logo} alt="Store logo" />

@@ -32,8 +32,11 @@ const ProductCard = ({ product, selectProduct }) => {
         <p className="price has-text-weight-semibold">${product.price}</p>
       </div>
       <div>
-        <button className="is-blue">See details</button>
-        <button className="is-green" onClick={() => selectProduct(product)}>
+        <button className="is-blue is-button">See details</button>
+        <button
+          className="is-green is-button"
+          onClick={() => selectProduct(product)}
+        >
           Add to cart
         </button>
       </div>
