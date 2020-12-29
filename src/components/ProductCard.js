@@ -1,30 +1,27 @@
 import React from 'react';
-import star from '../assets/star-rate.svg';
-import starHalf from '../assets/star-rate-half.svg';
 import commentsIcon from '../assets/comment.png';
 import './ProductCard.scss';
+import RatingMeter from './RatingMeter';
 
-const ProductCard = () => {
+const ProductCard = ({ type, imageSrc, title, rating, comments, price }) => {
   return (
     <div className="card">
-      <div className="type has-text-centered">BASIC</div>
-      <img className="product-img" src="./coffe.jpg" alt="Product icon" />
+      <div className={type ? 'type is-green has-text-centered' : 'type'}>
+        {type || ' '}
+      </div>
+      <img className="product-img" src={imageSrc} alt="Product icon" />
       <div className="description has-text-left">
-        <p className="title">Coffe Maker</p>
+        <p className="title">{title}</p>
         <div className="info">
           <div className="rating">
-            <img alt="Star rate" src={star} />
-            <img alt="Star rate" src={star} />
-            <img alt="Star rate" src={star} />
-            <img alt="Star rate" src={star} />
-            <img alt="Star rate half" src={starHalf} />
+            <RatingMeter rating={rating} />
           </div>
           <div className="comments">
-            <span className="comments-number">2</span>
+            <span className="comments-number">{comments}</span>
             <img className="icon" alt="Comments icon" src={commentsIcon} />
           </div>
         </div>
-        <p className="price has-text-weight-semibold">$105</p>
+        <p className="price has-text-weight-semibold">${price}</p>
       </div>
       <div>
         <button className="is-blue">See details</button>

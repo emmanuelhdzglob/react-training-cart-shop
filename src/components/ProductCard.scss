@@ -1,8 +1,10 @@
 .card {
   width: 240px;
-  border-bottom: 1px solid rgb(207, 207, 207);
+  border-bottom: 1px solid #cfcfcf;
 
   .product-img {
+    object-fit: contain;
+    height: 125px;
     width: 89px;
   }
 
@@ -19,12 +21,16 @@
   }
 
   .type {
+    display: block;
     font-size: 12px;
     line-height: 15px;
     color: white;
-    background-color: #11d000;
     width: 59px;
     height: 15px;
+  }
+
+  .type.is-green {
+    background-color: #11d000;
   }
 
   .comments-number {
