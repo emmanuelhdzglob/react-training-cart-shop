@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './Navbar.scss';
 import logo from '../assets/globant-shops.svg';
 import cartImg from '../assets/cart.svg';
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
   return (
     <nav className="navbar">
       <ul>
@@ -13,9 +14,9 @@ const Navbar = () => {
           </a>
         </li>
         <li>
-          <div>
+          <div style={{ cursor: 'pointer' }}>
             <img src={cartImg} alt="Cart icon" />
-            <span className="has-text-centered">3</span>
+            <span className="has-text-centered">{cart.length}</span>
           </div>
         </li>
       </ul>
@@ -23,4 +24,10 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Navbar);
