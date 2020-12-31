@@ -12,10 +12,10 @@ export const selectProduct = (product) => {
   };
 };
 
-export const removeProductFromCart = (product) => {
+export const removeProductFromCart = (productId) => {
   return {
     type: REMOVE_FROM_CART,
-    payload: product.id,
+    payload: productId,
   };
 };
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { removeProductFromCart } from '../actions';
 import './CartProduct.scss';
 
-const CartProduct = ({ product }) => {
+const CartProduct = ({ product, removeProductFromCart }) => {
   if (!product) {
     return null;
   }
@@ -21,7 +22,10 @@ const CartProduct = ({ product }) => {
         <p>{product.title}</p>
         <div className="is-display-flex is-align-items-center">
           <p>${product.price}</p>
-          <i className="far fa-trash-alt"></i>
+          <i
+            className="far fa-trash-alt"
+            onClick={() => removeProductFromCart(product.id)}
+          ></i>
         </div>
       </div>
     </div>
@@ -34,4 +38,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(CartProduct);
+export default connect(mapStateToProps, { removeProductFromCart })(
+  CartProduct
+);

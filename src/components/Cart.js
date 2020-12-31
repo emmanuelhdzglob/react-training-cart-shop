@@ -15,6 +15,14 @@ const Cart = ({ cart, cartIsOpened, closeCart }) => {
     };
   }, [cartIsOpened]);
 
+  useEffect(() => {
+    if (!cart.length) {
+      closeCart();
+    }
+  }, [cart.length, closeCart]);
+
+  const totalPrice = cart.reduce((acc, product) => product.price + acc, 0);
+
   const renderedCartProducts = cart.map((product) => {
     return <CartProduct productId={product.id} key={product.id} />;
   });
@@ -32,12 +40,12 @@ const Cart = ({ cart, cartIsOpened, closeCart }) => {
         </div>
         <h2 className="has-text-weight-normal">Cart:</h2>
         <p>
-          Subtotal: <span className="has-text-weight-bold">$315</span>
+          Subtotal: <span className="has-text-weight-bold">${totalPrice}</span>
         </p>
         <button className="is-blue is-button">Proceed to payment</button>
         <div>{renderedCartProducts}</div>
         <p>
-          Subtotal: <span className="has-text-weight-bold">$315</span>
+          Subtotal: <span className="has-text-weight-bold">${totalPrice}</span>
         </p>
         <button className="is-blue is-button">Proceed to payment</button>
       </div>
