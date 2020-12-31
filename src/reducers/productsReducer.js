@@ -54,6 +54,24 @@ const productsReducer = () => {
       comments: 8,
       imageSrc: './coffe.jpg',
     },
+    {
+      id: 7,
+      title: 'Coffe Maker',
+      price: 120,
+      rating: 3,
+      type: 'BASIC',
+      comments: 10,
+      imageSrc: './coffe.jpg',
+    },
+    {
+      id: 8,
+      title: 'Coffe Maker',
+      price: 110,
+      rating: 4.5,
+      type: 'BASIC',
+      comments: 8,
+      imageSrc: './coffe.jpg',
+    },
   ];
 };
 

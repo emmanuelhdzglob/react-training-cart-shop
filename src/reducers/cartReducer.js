@@ -15,4 +15,36 @@ const cartReducer = (state = [], action) => {
   }
 };
 
+// const cartReducer = () => {
+//   return [
+//     {
+//       id: 1,
+//       title: 'Coffe Maker',
+//       price: 75,
+//       rating: 4.5,
+//       type: 'BASIC',
+//       comments: 2,
+//       imageSrc: './coffe.jpg',
+//     },
+//     {
+//       id: 2,
+//       title: 'Super Coffe Maker',
+//       price: 25,
+//       rating: 3.5,
+//       type: '',
+//       comments: 2,
+//       imageSrc: './coffe.jpg',
+//     },
+//     {
+//       id: 3,
+//       title: 'Coffe Maker',
+//       price: 105,
+//       rating: 2,
+//       type: 'BASIC',
+//       comments: 2,
+//       imageSrc: './coffe.jpg',
+//     },
+//   ];
+// };
+
 export default cartReducer;

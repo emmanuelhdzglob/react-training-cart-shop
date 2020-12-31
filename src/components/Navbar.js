@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { openCart } from '../actions';
 import './Navbar.scss';
 import logo from '../assets/globant-shops.svg';
 import cartImg from '../assets/cart.svg';
 
-const Navbar = ({ cart }) => {
+const Navbar = ({ cart, openCart }) => {
   return (
     <nav className="navbar">
       <ul className="is-display-flex is-align-items-center is-justify-content-space-between">
@@ -14,7 +15,10 @@ const Navbar = ({ cart }) => {
           </a>
         </li>
         <li>
-          <div style={{ cursor: 'pointer' }}>
+          <div
+            style={{ cursor: 'pointer' }}
+            onClick={() => openCart(cart.length)}
+          >
             <img src={cartImg} alt="Cart icon" />
             <span className="has-text-centered">{cart.length}</span>
           </div>
@@ -30,4 +34,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { openCart })(Navbar);

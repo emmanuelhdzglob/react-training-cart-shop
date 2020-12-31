@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { selectProduct } from '../actions';
-import commentsIcon from '../assets/comment.png';
 import './ProductCard.scss';
+import commentsIcon from '../assets/comment.png';
 import RatingMeter from './RatingMeter';
 
 const ProductCard = ({ product, selectProduct }) => {
