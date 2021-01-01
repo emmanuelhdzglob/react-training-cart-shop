@@ -17,7 +17,7 @@ const ProductList = ({ products }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { products: state.products };
+  return { products: state.products.filteredItems };
 };
 
 export default connect(mapStateToProps)(ProductList);

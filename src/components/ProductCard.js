@@ -46,7 +46,7 @@ const ProductCard = ({ product, selectProduct }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    product: state.products.find(
+    product: state.products.filteredItems.find(
       (product) => product.id === ownProps.productId
     ),
   };
