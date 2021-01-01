@@ -1,3 +1,4 @@
+import { FILTER_PRODUCTS } from '../actions/types';
 import products from './products';
 
 const INITIAL_STATE = {
@@ -7,7 +8,7 @@ const INITIAL_STATE = {
 
 const productsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'FILTER_PRODUCTS':
+    case FILTER_PRODUCTS:
       return { ...state, filteredItems: action.payload };
     default:
       return state;

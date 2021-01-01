@@ -6,7 +6,9 @@ import {
   TOGGLE_BASIC_FILTER,
   CHANGE_PRICE_FILTER,
   CHANGE_SORT,
+  FILTER_PRODUCTS,
 } from './types';
+import filterByCriteria from '../utils/filterByCriteria';
 import sortByCriteria from '../utils/sortByCriteria';
 
 export const filterProducts = (products) => (dispatch, getState) => {
@@ -14,28 +16,15 @@ export const filterProducts = (products) => (dispatch, getState) => {
   const { basic, priceRange, sortBy } = activeFilters;
   const [lowerLimit, upperLimit] = priceRange.limits;
 
-  const filteredProducts = products.filter((product) => {
-    if (basic === 'yes') {
-      return (
-        product.type === 'BASIC' &&
-        product.price >= lowerLimit &&
-        product.price <= upperLimit
-      );
-    }
-
-    if (basic === 'no') {
-      return (
-        product.type === '' &&
-        product.price >= lowerLimit &&
-        product.price <= upperLimit
-      );
-    }
-
-    return product.price >= lowerLimit && product.price <= upperLimit;
-  });
+  const filteredProducts = filterByCriteria(
+    products,
+    basic,
+    lowerLimit,
+    upperLimit
+  );
 
   dispatch({
-    type: 'FILTER_PRODUCTS',
+    type: FILTER_PRODUCTS,
     payload:
       sortBy === 'none'
         ? filteredProducts
