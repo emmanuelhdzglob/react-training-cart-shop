@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { closeCart } from '../actions';
+import { closeCart } from '../../actions';
 import './Cart.scss';
 import CartProduct from './CartProduct';
 

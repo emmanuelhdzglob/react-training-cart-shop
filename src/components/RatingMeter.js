@@ -3,7 +3,7 @@ import star from '../assets/star-rate.svg';
 import starHalf from '../assets/star-rate-half.svg';
 import starEmpty from '../assets/star-rate-empty.svg';
 
-const RatingMeter = ({ rating }) => {
+const RatingMeter = ({ rating, width }) => {
   const getStars = () => {
     const stars = {};
     const parsedRating = parseFloat(rating);
@@ -25,19 +25,31 @@ const RatingMeter = ({ rating }) => {
     if (fullStars) {
       for (let i = 0; i < fullStars; i += 1) {
         renderedStars.push(
-          <img alt="Full star" src={star} key={`full-${i}`} />
+          <img
+            alt="Full star"
+            src={star}
+            key={`full-${i}`}
+            style={{ width }}
+          />
         );
       }
     }
 
     if (halfStars) {
-      renderedStars.push(<img alt="Half star" src={starHalf} key="half" />);
+      renderedStars.push(
+        <img alt="Half star" src={starHalf} key="half" style={{ width }} />
+      );
     }
 
     if (emptyStars) {
       for (let i = 0; i < emptyStars; i += 1) {
         renderedStars.push(
-          <img alt="Empty star" src={starEmpty} key={`empty-${i}`} />
+          <img
+            alt="Empty star"
+            src={starEmpty}
+            key={`empty-${i}`}
+            style={{ width }}
+          />
         );
       }
     }

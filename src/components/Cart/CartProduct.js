@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeProductFromCart } from '../actions';
+import { removeProductFromCart } from '../../actions';
 import './CartProduct.scss';
 
 const CartProduct = ({ product, removeProductFromCart }) => {

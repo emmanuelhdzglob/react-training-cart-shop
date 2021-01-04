@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectProduct } from '../actions';
+import { selectProduct } from '../../actions';
 import './ProductCard.scss';
-import commentsIcon from '../assets/comment.png';
-import RatingMeter from './RatingMeter';
+import commentsIcon from '../../assets/comment.png';
+import RatingMeter from '../RatingMeter';
 
 const ProductCard = ({ product, selectProduct }) => {
   if (!product) {
@@ -22,7 +22,7 @@ const ProductCard = ({ product, selectProduct }) => {
         <p className="title">{product.name}</p>
         <div className="info">
           <div className="rating">
-            <RatingMeter rating={product.rate} />
+            <RatingMeter rating={product.rate} width="10px" />
           </div>
           <div className="comments">
             <span className="comments-number">{product.comments}</span>

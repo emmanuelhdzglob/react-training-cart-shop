@@ -62,10 +62,27 @@
   display: flex;
 }
 
+.is-justify-content-center {
+  justify-content: center;
+}
+
 .is-justify-content-space-between {
   justify-content: space-between;
 }
 
+.is-justify-content-space-around {
+  justify-content: space-around;
+}
+
 .is-align-items-center {
   align-items: center;
+}
+
+/* Misc Styles */
+.is-clickable {
+  cursor: pointer;
+}
+
+.is-unselectable {
+  user-select: none;
 }

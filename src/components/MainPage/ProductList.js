@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProductCard from './ProductCard';
 import { connect } from 'react-redux';
-import { fetchProducts } from '../actions';
+import { fetchProducts } from '../../actions';
 import './ProductList.scss';
 
 class ProductList extends Component {

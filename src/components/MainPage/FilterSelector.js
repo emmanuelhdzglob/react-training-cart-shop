@@ -5,7 +5,7 @@ import {
   changePriceFilter,
   changeSort,
   filterProducts,
-} from '../actions';
+} from '../../actions';
 import './FilterSelector.scss';
 
 const priceRanges = [

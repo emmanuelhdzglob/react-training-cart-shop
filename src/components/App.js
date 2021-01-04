@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import MainPage from './components/MainPage';
-import ProductPage from './components/ProductPage';
-import Cart from './components/Cart';
+import Navbar from './Navbar';
+import MainPage from './MainPage/MainPage';
+import ProductPage from './ProductPage/ProductPage';
+import Cart from './Cart/Cart';
 
 const App = () => {
   return (
