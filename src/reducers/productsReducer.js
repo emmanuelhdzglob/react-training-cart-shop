@@ -1,15 +1,11 @@
-import { FILTER_PRODUCTS } from '../actions/types';
-import products from './products';
+import { FETCH_PRODUCTS, FILTER_PRODUCTS } from '../actions/types';
 
-const INITIAL_STATE = {
-  items: products,
-  filteredItems: [...products],
-};
-
-const productsReducer = (state = INITIAL_STATE, action) => {
+const productsReducer = (state = [], action) => {
   switch (action.type) {
+    case FETCH_PRODUCTS:
+      return [...state, ...action.payload];
     case FILTER_PRODUCTS:
-      return { ...state, filteredItems: action.payload };
+      return [...action.payload];
     default:
       return state;
   }

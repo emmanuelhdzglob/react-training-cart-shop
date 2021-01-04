@@ -7,7 +7,7 @@ import {
 const INITIAL_STATE = {
   basic: 'all',
   priceRange: { limits: [0, Infinity] },
-  sortBy: 'none',
+  sort: 'none',
 };
 
 const filtersReducer = (state = INITIAL_STATE, action) => {
@@ -25,7 +25,7 @@ const filtersReducer = (state = INITIAL_STATE, action) => {
     case CHANGE_SORT:
       return {
         ...state,
-        sortBy: action.payload,
+        sort: action.payload,
       };
     default:
       return state;

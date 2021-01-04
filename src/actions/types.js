@@ -1,3 +1,4 @@
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const PRODUCT_SELECTED = 'PRODUCT_SELECTED';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const OPEN_CART = 'OPEN_CART';

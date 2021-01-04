@@ -21,7 +21,10 @@ const Cart = ({ cart, cartIsOpened, closeCart }) => {
     }
   }, [cart.length, closeCart]);
 
-  const totalPrice = cart.reduce((acc, product) => product.price + acc, 0);
+  const totalPrice = cart.reduce(
+    (acc, product) => parseFloat(product.price) + acc,
+    0
+  );
 
   const renderedCartProducts = cart.map((product) => {
     return <CartProduct productId={product.id} key={product.id} />;

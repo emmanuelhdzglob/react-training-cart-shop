@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import ProductList from './components/ProductList';
-import FilterSelector from './components/FilterSelector';
+import MainPage from './components/MainPage';
+import ProductPage from './components/ProductPage';
 import Cart from './components/Cart';
 
 const App = () => {
@@ -10,11 +10,8 @@ const App = () => {
     <div style={{ overflowY: 'none' }}>
       <Navbar />
       <div>
-        <FilterSelector />
-        <div style={{ marginLeft: '260px' }}>
-          <ProductList />
-        </div>
-
+        {/* <MainPage /> */}
+        <ProductPage />
         <Cart />
       </div>
     </div>

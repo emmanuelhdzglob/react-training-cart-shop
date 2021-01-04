@@ -3,9 +3,11 @@
   border-bottom: 1px solid #cfcfcf;
 
   .product-img {
+    display: block;
+    margin: 10px auto;
     object-fit: contain;
     height: 125px;
-    width: 89px;
+    width: 80%;
   }
 
   .title {

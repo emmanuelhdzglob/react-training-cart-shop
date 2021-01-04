@@ -1,4 +1,6 @@
+import mockAPI from '../apis/mockAPI';
 import {
+  FETCH_PRODUCTS,
   PRODUCT_SELECTED,
   REMOVE_FROM_CART,
   OPEN_CART,
@@ -8,28 +10,29 @@ import {
   CHANGE_SORT,
   FILTER_PRODUCTS,
 } from './types';
-import filterByCriteria from '../utils/filterByCriteria';
-import sortByCriteria from '../utils/sortByCriteria';
 
-export const filterProducts = (products) => (dispatch, getState) => {
+export const filterProducts = () => async (dispatch, getState) => {
   const { activeFilters } = getState();
-  const { basic, priceRange, sortBy } = activeFilters;
-  const [lowerLimit, upperLimit] = priceRange.limits;
+  const { basic, priceRange, sort } = activeFilters;
+  const [priceLowerLimit, priceUpperLimit] = priceRange.limits;
 
-  const filteredProducts = filterByCriteria(
-    products,
-    basic,
-    lowerLimit,
-    upperLimit
-  );
-
-  dispatch({
-    type: FILTER_PRODUCTS,
-    payload:
-      sortBy === 'none'
-        ? filteredProducts
-        : sortByCriteria(filteredProducts, sortBy),
+  const { data } = await mockAPI.get('/products', {
+    params: {
+      items: 9,
+      filter: basic === 'yes' ? 'basics' : 'non-basics',
+      sort,
+      priceLowerLimit,
+      priceUpperLimit,
+    },
   });
+
+  dispatch({ type: FILTER_PRODUCTS, payload: data.products });
+};
+
+export const fetchProducts = () => async (dispatch) => {
+  const { data } = await mockAPI.get('/products', { params: { items: 9 } });
+
+  dispatch({ type: FETCH_PRODUCTS, payload: data.products });
 };
 
 export const selectProduct = (product) => {

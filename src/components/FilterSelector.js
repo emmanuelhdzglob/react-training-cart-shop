@@ -16,9 +16,8 @@ const priceRanges = [
 
 const sortCriteria = [
   { label: 'None', value: 'none' },
-  { label: 'Relevant', value: 'rating' },
-  { label: 'Price', value: 'price' },
-  { label: 'Name', value: 'name' },
+  { label: 'Relevant', value: 'Rating' },
+  { label: 'Price', value: 'Prices' },
 ];
 
 const FilterSelector = (props) => {
@@ -31,7 +30,7 @@ const FilterSelector = (props) => {
             type="checkbox"
             onChange={() => {
               props.toggleBasicFilter();
-              props.filterProducts(props.products);
+              props.filterProducts();
             }}
             checked={props.activeFilters.basic === 'yes'}
           />
@@ -52,7 +51,7 @@ const FilterSelector = (props) => {
                     label: range.label,
                     limits: range.limits,
                   });
-                  props.filterProducts(props.products);
+                  props.filterProducts();
                 }}
                 checked={props.activeFilters.priceRange.label === range.label}
               />
@@ -70,7 +69,7 @@ const FilterSelector = (props) => {
           name="sort"
           onChange={(evt) => {
             props.changeSort(evt.target.value);
-            props.filterProducts(props.products);
+            props.filterProducts();
           }}
         >
           {sortCriteria.map((criteria) => (

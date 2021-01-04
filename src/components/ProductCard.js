@@ -13,16 +13,16 @@ const ProductCard = ({ product, selectProduct }) => {
   return (
     <div className="card">
       <div
-        className={product.type ? 'type is-green has-text-centered' : 'type'}
+        className={product.basics ? 'type is-green has-text-centered' : 'type'}
       >
-        {product.type || ' '}
+        {product.basics ? 'BASICS' : ''}
       </div>
-      <img className="product-img" src={product.imageSrc} alt="Product icon" />
+      <img className="product-img" src={product.img} alt="Product icon" />
       <div className="description has-text-left">
-        <p className="title">{product.title}</p>
+        <p className="title">{product.name}</p>
         <div className="info">
           <div className="rating">
-            <RatingMeter rating={product.rating} />
+            <RatingMeter rating={product.rate} />
           </div>
           <div className="comments">
             <span className="comments-number">{product.comments}</span>
@@ -46,7 +46,7 @@ const ProductCard = ({ product, selectProduct }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    product: state.products.filteredItems.find(
+    product: state.products.find(
       (product) => product.id === ownProps.productId
     ),
   };

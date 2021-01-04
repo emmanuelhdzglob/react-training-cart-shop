@@ -4,12 +4,13 @@
 
   .icon-container {
     position: relative;
-    width: 52px;
+    width: 100px;
   }
 
   img {
+    object-fit: contain;
     height: 70px;
-    width: 52px;
+    width: 100%;
   }
 
   .type {

@@ -6,8 +6,9 @@ import starEmpty from '../assets/star-rate-empty.svg';
 const RatingMeter = ({ rating }) => {
   const getStars = () => {
     const stars = {};
-    const lowerLimit = Math.floor(rating);
-    const upperLimit = Math.round(rating);
+    const parsedRating = parseFloat(rating);
+    const lowerLimit = Math.floor(parsedRating);
+    const upperLimit = Math.ceil(parsedRating);
 
     stars.halfStars = rating < upperLimit && rating > lowerLimit ? 1 : 0;
 

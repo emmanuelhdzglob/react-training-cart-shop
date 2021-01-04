@@ -12,14 +12,16 @@ const CartProduct = ({ product, removeProductFromCart }) => {
     <div className="cart-product is-display-flex">
       <div className="icon-container">
         <div
-          className={product.type ? 'type is-green has-text-centered' : 'type'}
+          className={
+            product.basics ? 'type is-green has-text-centered' : 'type'
+          }
         >
-          {product.type}
+          {product.basics ? 'BASICS' : ''}
         </div>
-        <img src={product.imageSrc} alt="Product icon" />
+        <img src={product.img} alt="Product icon" />
       </div>
       <div className="description is-display-flex is-justify-content-space-between is-align-items-center">
-        <p>{product.title}</p>
+        <p>{product.name}</p>
         <div className="is-display-flex is-align-items-center">
           <p>${product.price}</p>
           <i
