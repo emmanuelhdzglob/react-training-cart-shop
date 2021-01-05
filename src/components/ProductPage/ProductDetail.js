@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import RatingMeter from '../RatingMeter';
+import { addProductToCart } from '../../actions';
 import './ProductDetail.scss';
 import commentsIcon from '../../assets/comment.png';
 
-const ProductDetail = ({ activeProduct }) => {
+const ProductDetail = ({ activeProduct, addProductToCart }) => {
   const [seeMoreStatus, setSeeMoreStatus] = useState(false);
 
   return (
@@ -25,7 +26,11 @@ const ProductDetail = ({ activeProduct }) => {
         </div>
         <div className="is-display-flex is-align-items-center">
           <h2 className="has-text-weight-normal">${activeProduct.price}</h2>
-          <div className="type has-text-centered">BASIC</div>
+          <div
+            className={activeProduct.basics ? 'type has-text-centered' : ''}
+          >
+            {activeProduct.basics ? 'BASICS' : ''}
+          </div>
         </div>
         <p>
           {seeMoreStatus
@@ -41,7 +46,12 @@ const ProductDetail = ({ activeProduct }) => {
         >
           {seeMoreStatus ? '' : 'See more.'}
         </p>
-        <button className="is-button is-green">Add to cart</button>
+        <button
+          className="is-button is-green"
+          onClick={() => addProductToCart(activeProduct)}
+        >
+          Add to cart
+        </button>
       </div>
     </div>
   );
@@ -51,4 +61,4 @@ const mapStateToProps = (state) => {
   return { activeProduct: state.activeProductDetail };
 };
 
-export default connect(mapStateToProps)(ProductDetail);
+export default connect(mapStateToProps, { addProductToCart })(ProductDetail);

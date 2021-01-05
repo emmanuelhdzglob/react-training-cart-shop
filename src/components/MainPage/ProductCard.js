@@ -6,7 +6,7 @@ import './ProductCard.scss';
 import commentsIcon from '../../assets/comment.png';
 import RatingMeter from '../RatingMeter';
 
-const ProductCard = ({ product, selectProduct }) => {
+const ProductCard = ({ product, addProductToCart }) => {
   if (!product) {
     return null;
   }
