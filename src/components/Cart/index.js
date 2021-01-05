@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { closeCart } from '../../actions';
 import './Cart.scss';
 import CartProduct from './CartProduct';
 
-const Cart = ({ cart, cartIsOpened, closeCart }) => {
+const Cart = ({ cart, cartIsOpened, closeCart, location }) => {
   // If the cart is opened disable overflow Y for body.
   useEffect(() => {
     if (cartIsOpened) {
@@ -18,10 +19,10 @@ const Cart = ({ cart, cartIsOpened, closeCart }) => {
 
   // Closes the cart when is empty.
   useEffect(() => {
-    if (!cart.length) {
+    if (!cart.length || location.pathname === '/payment') {
       closeCart();
     }
-  }, [cart.length, closeCart]);
+  }, [cart.length, location.pathname, closeCart]);
 
   const totalPrice = cart.reduce(
     (acc, product) => parseFloat(product.price) + acc,
@@ -47,12 +48,16 @@ const Cart = ({ cart, cartIsOpened, closeCart }) => {
         <p>
           Subtotal: <span className="has-text-weight-bold">${totalPrice}</span>
         </p>
-        <button className="is-blue is-button">Proceed to payment</button>
+        <Link className="is-blue is-button" to="/payment">
+          Proceed to payment
+        </Link>
         <div>{renderedCartProducts}</div>
         <p>
           Subtotal: <span className="has-text-weight-bold">${totalPrice}</span>
         </p>
-        <button className="is-blue is-button">Proceed to payment</button>
+        <Link className="is-blue is-button" to="/payment">
+          Proceed to payment
+        </Link>
       </div>
     </div>
   );

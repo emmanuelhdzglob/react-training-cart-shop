@@ -6,7 +6,7 @@ import './Navbar.scss';
 import logo from '../assets/globant-shops.svg';
 import cartImg from '../assets/cart.svg';
 
-const Navbar = ({ cart, openCart }) => {
+const Navbar = ({ cart, openCart, location }) => {
   return (
     <nav className="navbar">
       <ul className="is-display-flex is-align-items-center is-justify-content-space-between">
@@ -16,13 +16,15 @@ const Navbar = ({ cart, openCart }) => {
           </Link>
         </li>
         <li>
-          <div
-            style={{ cursor: 'pointer' }}
-            onClick={() => openCart(cart.length)}
-          >
-            <img src={cartImg} alt="Cart icon" />
-            <span className="has-text-centered">{cart.length}</span>
-          </div>
+          {location.pathname === '/payment' ? null : (
+            <div
+              style={{ cursor: 'pointer' }}
+              onClick={() => openCart(cart.length)}
+            >
+              <img src={cartImg} alt="Cart icon" />
+              <span className="has-text-centered">{cart.length}</span>
+            </div>
+          )}
         </li>
       </ul>
     </nav>

@@ -1,8 +1,9 @@
 import React from 'react';
+import './FormField.scss';
 
-const Field = ({ labelText, name }) => {
+const Field = ({ labelText, name, width }) => {
   return (
-    <div className="field">
+    <div className="form-field" style={{ width }}>
       <label>{labelText}</label>
       <input type="text" name={name} />
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { removeProductFromCart } from '../../actions';
 import './CartProduct.scss';
 
@@ -21,7 +22,7 @@ const CartProduct = ({ product, removeProductFromCart }) => {
         <img src={product.img} alt="Product icon" />
       </div>
       <div className="description is-display-flex is-justify-content-space-between is-align-items-center">
-        <p>{product.name}</p>
+        <Link to={`/product/${product.id}`}>{product.name}</Link>
         <div className="is-display-flex is-align-items-center">
           <p>${product.price}</p>
           <i
