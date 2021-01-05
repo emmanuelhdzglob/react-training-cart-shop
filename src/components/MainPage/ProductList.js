@@ -6,7 +6,9 @@ import './ProductList.scss';
 
 class ProductList extends Component {
   componentDidMount() {
-    this.props.fetchProducts();
+    if (this.props.products.length === 0) {
+      this.props.fetchProducts();
+    }
   }
 
   renderList() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectProduct } from '../../actions';
+import { Link } from 'react-router-dom';
+import { addProductToCart } from '../../actions';
 import './ProductCard.scss';
 import commentsIcon from '../../assets/comment.png';
 import RatingMeter from '../RatingMeter';
@@ -32,10 +33,12 @@ const ProductCard = ({ product, selectProduct }) => {
         <p className="price has-text-weight-semibold">${product.price}</p>
       </div>
       <div>
-        <button className="is-blue is-button">See details</button>
+        <Link className="is-blue is-button" to={`/product/${product.id}`}>
+          See details
+        </Link>
         <button
           className="is-green is-button"
-          onClick={() => selectProduct(product)}
+          onClick={() => addProductToCart(product)}
         >
           Add to cart
         </button>
@@ -52,4 +55,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { selectProduct })(ProductCard);
+export default connect(mapStateToProps, { addProductToCart })(ProductCard);

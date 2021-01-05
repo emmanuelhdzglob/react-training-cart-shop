@@ -5,6 +5,7 @@ import './Cart.scss';
 import CartProduct from './CartProduct';
 
 const Cart = ({ cart, cartIsOpened, closeCart }) => {
+  // If the cart is opened disable overflow Y for body.
   useEffect(() => {
     if (cartIsOpened) {
       document.body.style.overflowY = 'hidden';
@@ -15,6 +16,7 @@ const Cart = ({ cart, cartIsOpened, closeCart }) => {
     };
   }, [cartIsOpened]);
 
+  // Closes the cart when is empty.
   useEffect(() => {
     if (!cart.length) {
       closeCart();

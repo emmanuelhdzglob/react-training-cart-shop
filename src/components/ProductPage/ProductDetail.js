@@ -1,36 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import RatingMeter from '../RatingMeter';
 import './ProductDetail.scss';
 import commentsIcon from '../../assets/comment.png';
 
-const ProductDetail = () => {
+const ProductDetail = ({ activeProduct }) => {
+  const [seeMoreStatus, setSeeMoreStatus] = useState(false);
+
   return (
     <div className="product-detail is-display-flex is-align-items-center is-justify-content-center">
-      <img className="product-img" src="./coffe.jpg" alt="Product icon" />
+      <img
+        className="product-img"
+        src={activeProduct.img}
+        alt="Product icon"
+      />
       <div className="description">
-        <h1 className="has-text-weight-normal">Coffe Maker</h1>
+        <h1 className="has-text-weight-normal">{activeProduct.name}</h1>
         <div className="is-display-flex is-align-items-center">
-          <RatingMeter rating="4.5" width="20px" />
+          <RatingMeter rating={activeProduct.rate} width="20px" />
           <div className="comments">
-            <span>2</span>
+            <span>{activeProduct.comments.length}</span>
             <img className="icon" src={commentsIcon} alt="Comments icon" />
           </div>
         </div>
         <div className="is-display-flex is-align-items-center">
-          <h2 className="has-text-weight-normal">$105</h2>
+          <h2 className="has-text-weight-normal">${activeProduct.price}</h2>
           <div className="type has-text-centered">BASIC</div>
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In velit
-          orci, efficitur eu vestibulum sed, lobortis id nisi. Sed tempor
-          faucibus neque, at congue sapien pretium a. Cras sed fermentum
-          dolor...
+          {seeMoreStatus
+            ? activeProduct.description
+            : `${activeProduct.description.slice(
+                0,
+                activeProduct.description.length / 3
+              )}...`}
         </p>
-        <p className="see-more is-clickable is-unselectable">See more.</p>
+        <p
+          className="see-more is-clickable is-unselectable"
+          onClick={() => setSeeMoreStatus(true)}
+        >
+          {seeMoreStatus ? '' : 'See more.'}
+        </p>
         <button className="is-button is-green">Add to cart</button>
       </div>
     </div>
   );
 };
 
-export default ProductDetail;
+const mapStateToProps = (state) => {
+  return { activeProduct: state.activeProductDetail };
+};
+
+export default connect(mapStateToProps)(ProductDetail);

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Comment.scss';
 
-const Comment = (props) => {
+const Comment = ({ username, content }) => {
   return (
     <div className="comment">
-      <p className="username">John Doe</p>
-      <p className="content">Excelente Product {':)'}</p>
+      <p className="username">{username}</p>
+      <p className="content">{content}</p>
     </div>
   );
 };

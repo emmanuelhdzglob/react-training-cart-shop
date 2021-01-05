@@ -1,8 +1,8 @@
-import { PRODUCT_SELECTED, REMOVE_FROM_CART } from '../actions/types';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/types';
 
 const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case PRODUCT_SELECTED:
+    case ADD_TO_CART:
       const productFound = state.find(
         (product) => product.id === action.payload.id
       );

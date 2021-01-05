@@ -8,6 +8,10 @@
 }
 
 /* Button styles */
+a.is-button {
+  text-decoration: none;
+}
+
 .is-button {
   display: block;
   cursor: pointer;
@@ -16,6 +20,8 @@
   margin: 5px 0;
   border: 1px solid black;
   color: white;
+  text-align: center;
+  line-height: 32px;
 }
 
 /* Color Styles */

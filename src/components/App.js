@@ -1,19 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './Navbar';
-import MainPage from './MainPage/MainPage';
-import ProductPage from './ProductPage/ProductPage';
-import Cart from './Cart/Cart';
+import MainPage from './MainPage';
+import ProductPage from './ProductPage';
+import Cart from './Cart';
 
 const App = () => {
   return (
-    <div style={{ overflowY: 'none' }}>
-      <Navbar />
-      <div>
-        {/* <MainPage /> */}
-        <ProductPage />
+    <div>
+      <Router>
+        <Navbar />
+        <Route path="/" exact component={MainPage} />
+        <Route path="/product/:productId" component={ProductPage} />
         <Cart />
-      </div>
+      </Router>
     </div>
   );
 };
