@@ -33,6 +33,10 @@ a.is-button {
   background-color: #2ecc71;
 }
 
+.is-red {
+  background-color: #ec524b;
+}
+
 /* text-align styles */
 .has-text-centered {
   text-align: center;

@@ -12,9 +12,9 @@ const CartProduct = ({ product, removeProductFromCart }) => {
     <div className="cart-product is-display-flex">
       <div className="icon-container">
         <div
-          className={
-            product.basics ? 'type is-green has-text-centered' : 'type'
-          }
+          className={`type has-text-centered ${
+            product.basics ? 'is-green' : ''
+          }`}
         >
           {product.basics ? 'BASICS' : ''}
         </div>
