@@ -15,3 +15,26 @@
     margin-left: 0px !important;
   }
 }
+
+.form-field {
+  margin: 10px 0;
+
+  label {
+    width: 100%;
+    display: block;
+    font-size: 16px;
+  }
+
+  input[type='text'] {
+    height: 34px;
+    width: 100%;
+  }
+}
+
+.form-field.is-width-50 {
+  width: 50%;
+}
+
+.form-field.is-width-100 {
+  width: 100%;
+}

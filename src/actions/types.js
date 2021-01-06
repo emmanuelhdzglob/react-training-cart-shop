@@ -9,3 +9,4 @@ export const CHANGE_SORT = 'CHANGE_SORT';
 export const FILTER_PRODUCTS = 'FILTER_PRODUCTS';
 export const GO_TO_PRODUCT = 'GO_TO_PRODUCT';
 export const RESET_PRODUCT_DETAIL = 'RESET_PRODUCT_DETAIL';
+export const PLACE_ORDER = 'PLACE_ORDER';

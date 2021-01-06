@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import productsReducer from './productsReducer';
 import cartReducer from './cartReducer';
 import toggleCartReducer from './toggleCartReducer';
@@ -11,4 +12,5 @@ export default combineReducers({
   cartIsOpened: toggleCartReducer,
   activeFilters: filtersReducer,
   activeProductDetail: productDetailReducer,
+  form: formReducer,
 });

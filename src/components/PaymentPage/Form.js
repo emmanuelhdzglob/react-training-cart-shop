@@ -1,45 +1,113 @@
-import React from 'react';
-import Field from './FormField';
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import './Form.scss';
+import { placeOrder } from '../../actions';
 
-const Form = () => {
-  return (
-    <form id="payment-form">
-      <h4>Shipping data:</h4>
-      <div className="form-section">
-        <div className="field-box is-display-flex">
-          <Field labelText="Name" name="name" width="50%" />
-          <Field labelText="Last Name" name="last-name" width="50%" />
-        </div>
-        <div className="field-box is-display-flex">
-          <Field labelText="Address" name="address" width="50%" />
-          <Field labelText="City" name="city" width="50%" />
-        </div>
-        <div className="field-box is-display-flex">
-          <Field labelText="State" name="state" width="50%" />
-          <Field labelText="Zip Code" name="zip-code" width="50%" />
-        </div>
-        <div className="field-box is-display-flex">
-          <Field labelText="Phone number" name="phone-number" width="50%" />
-        </div>
+class Form extends Component {
+  renderInput({ input, label, width }) {
+    const className = `form-field ${
+      width === '100%' ? 'is-width-100' : 'is-width-50'
+    }`;
+
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input {...input} autoComplete="off" type="text" />
       </div>
-      <h4>Credit Cart data:</h4>
-      <div className="form-section">
-        <div className="field-box is-display-flex">
+    );
+  }
+
+  onSubmit = (formValues) => {
+    const formattedValues = {
+      shippingData: {
+        fullName: `${formValues.name} ${formValues.lastName}`,
+        address: formValues.address,
+        city: formValues.city,
+        state: formValues.state,
+        zipCode: formValues.zipCode,
+        phoneNumber: formValues.phoneNumber,
+      },
+      creditCardData: {
+        creditCard: formValues.creditCard,
+        cvv: formValues.cvv,
+        expDate: formValues.expDate,
+        fullName: formValues.fullName,
+      },
+    };
+
+    this.props.placeOrder(formattedValues);
+  };
+
+  render() {
+    return (
+      <form
+        id="payment-form"
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+      >
+        <h4>Shipping data:</h4>
+        <div className="form-section">
+          <div className="field-box is-display-flex">
+            <Field name="name" label="Name" component={this.renderInput} />
+            <Field
+              name="lastName"
+              label="Last Name"
+              component={this.renderInput}
+            />
+          </div>
+          <div className="field-box is-display-flex">
+            <Field
+              name="address"
+              label="Address"
+              component={this.renderInput}
+            />
+            <Field name="city" label="City" component={this.renderInput} />
+          </div>
+          <div className="field-box is-display-flex">
+            <Field name="state" label="State" component={this.renderInput} />
+            <Field
+              name="zipCode"
+              label="Zip Code"
+              component={this.renderInput}
+            />
+          </div>
+          <div className="field-box is-display-flex">
+            <Field
+              name="phoneNumber"
+              label="Phonenumber"
+              component={this.renderInput}
+            />
+          </div>
+        </div>
+        <h4>Credit Cart data:</h4>
+        <div className="form-section">
+          <div className="field-box is-display-flex">
+            <Field
+              name="creditCard"
+              label="Credit Card Number"
+              component={this.renderInput}
+            />
+          </div>
           <Field
-            labelText="Credit Card Number"
-            name="credit-card"
-            width="50%"
+            name="fullName"
+            label="Full Name"
+            width="100%"
+            component={this.renderInput}
           />
+          <div className="field-box is-display-flex">
+            <Field
+              name="expDate"
+              label="Exp. Date"
+              component={this.renderInput}
+            />
+            <Field name="cvv" label="CVV" component={this.renderInput} />
+          </div>
         </div>
-        <Field labelText="Full Name" name="card-name" width="100%" />
-        <div className="field-box is-display-flex">
-          <Field labelText="Exp. Date" name="exp-date" width="50%" />
-          <Field labelText="CVV" name="cvv" width="50%" />
-        </div>
-      </div>
-    </form>
-  );
-};
+      </form>
+    );
+  }
+}
 
-export default Form;
+const wrappedForm = reduxForm({ form: 'paymentForm' })(Form);
+
+export default connect(null, { placeOrder })(wrappedForm);

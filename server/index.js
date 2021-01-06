@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const port = 8080;
 const cors = require('cors');
-
 const axios = require('axios');
+const bodyParser = require('body-parser');
+
 const mockProducts = require('./mock-products');
 const mockDetail = require('./mock-detail');
 
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/products', (req, res) => {
   axios

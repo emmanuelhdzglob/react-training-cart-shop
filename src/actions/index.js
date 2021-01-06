@@ -11,7 +11,15 @@ import {
   FILTER_PRODUCTS,
   GO_TO_PRODUCT,
   RESET_PRODUCT_DETAIL,
+  PLACE_ORDER,
 } from './types';
+
+// Action creators to fetch products from the API.
+export const fetchProducts = () => async (dispatch) => {
+  const { data } = await mockAPI.get('/products', { params: { items: 9 } });
+
+  dispatch({ type: FETCH_PRODUCTS, payload: data.products });
+};
 
 export const filterProducts = () => async (dispatch, getState) => {
   const { activeFilters } = getState();
@@ -31,6 +39,7 @@ export const filterProducts = () => async (dispatch, getState) => {
   dispatch({ type: FILTER_PRODUCTS, payload: data.products });
 };
 
+// Action creators to see product detail.
 export const goToProduct = (productId) => async (dispatch) => {
   const { data } = await mockAPI.get(`/products/${productId}`);
 
@@ -41,12 +50,7 @@ export const resetProductDetail = () => {
   return { type: RESET_PRODUCT_DETAIL };
 };
 
-export const fetchProducts = () => async (dispatch) => {
-  const { data } = await mockAPI.get('/products', { params: { items: 9 } });
-
-  dispatch({ type: FETCH_PRODUCTS, payload: data.products });
-};
-
+// Action creators to add/remove product from cart or open/close the cart.
 export const addProductToCart = (product) => {
   return {
     type: ADD_TO_CART,
@@ -75,6 +79,7 @@ export const closeCart = () => {
   return { type: CLOSE_CART };
 };
 
+// Action creators to modify the active filters.
 export const toggleBasicFilter = () => {
   return { type: TOGGLE_BASIC_FILTER };
 };
@@ -85,4 +90,13 @@ export const changePriceFilter = (priceObj) => {
 
 export const changeSort = (sortCriteria) => {
   return { type: CHANGE_SORT, payload: sortCriteria };
+};
+
+// Action creators to handle PaymentForm requests.
+export const placeOrder = (formValues) => async (dispatch) => {
+  const response = await mockAPI.post('/order', formValues);
+
+  console.log(response);
+
+  dispatch({ type: PLACE_ORDER, payload: response.data });
 };

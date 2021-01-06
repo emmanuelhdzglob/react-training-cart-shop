@@ -1,16 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './Navbar';
 import MainPage from './MainPage';
 import ProductPage from './ProductPage';
 import PaymentPage from './PaymentPage';
 import Cart from './Cart';
+import history from '../history';
 
 const App = () => {
   return (
     <div>
-      <Router>
+      <Router history={history}>
         <Route path="/" component={Navbar} />
         <Route path="/" exact component={MainPage} />
         <Route path="/product/:productId" component={ProductPage} />
