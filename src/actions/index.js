@@ -1,4 +1,5 @@
 import mockAPI from '../apis/mockAPI';
+import history from '../history';
 import {
   FETCH_PRODUCTS,
   ADD_TO_CART,
@@ -94,9 +95,12 @@ export const changeSort = (sortCriteria) => {
 
 // Action creators to handle PaymentForm requests.
 export const placeOrder = (formValues) => async (dispatch) => {
-  const response = await mockAPI.post('/order', formValues);
+  try {
+    const response = await mockAPI.post('/order', formValues);
 
-  console.log(response);
-
-  dispatch({ type: PLACE_ORDER, payload: response.data });
+    dispatch({ type: PLACE_ORDER, payload: response.data });
+    history.push('/payment/success');
+  } catch (err) {
+    console.log(err);
+  }
 };

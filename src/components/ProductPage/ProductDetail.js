@@ -1,76 +1,89 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RatingMeter from '../RatingMeter';
 import { addProductToCart, removeProductFromCart } from '../../actions';
 import './ProductDetail.scss';
 import commentsIcon from '../../assets/comment.png';
 
-const ProductDetail = (props) => {
-  const [seeMoreStatus, setSeeMoreStatus] = useState(false);
+class ProductDetail extends Component {
+  state = { seeMoreStatus: false };
 
-  const getProductDescription = () => {
-    const length = props.activeProduct.description.length;
+  getProductDescription = () => {
+    const length = this.props.activeProduct.description.length;
 
-    if (seeMoreStatus) {
-      return props.activeProduct.description;
+    if (this.state.seeMoreStatus) {
+      return this.props.activeProduct.description;
     }
 
-    return `${props.activeProduct.description.slice(0, length / 3)}...`;
+    return `${this.props.activeProduct.description.slice(0, length / 3)}...`;
   };
 
-  return (
-    <div className="product-detail is-display-flex is-align-items-center is-justify-content-center">
-      <img
-        className="product-img"
-        src={props.activeProduct.img}
-        alt="Product icon"
-      />
-      <div className="description">
-        <h1 className="has-text-weight-normal">{props.activeProduct.name}</h1>
-        <div className="is-display-flex is-align-items-center">
-          <RatingMeter rating={props.activeProduct.rate} width="20px" />
-          <div className="comments">
-            <span>{props.activeProduct.comments.length}</span>
-            <img className="icon" src={commentsIcon} alt="Comments icon" />
-          </div>
-        </div>
-        <div className="is-display-flex is-align-items-center">
-          <h2 className="has-text-weight-normal">
-            ${props.activeProduct.price}
-          </h2>
-          <div
-            className={
-              props.activeProduct.basics ? 'type has-text-centered' : ''
-            }
-          >
-            {props.activeProduct.basics ? 'BASICS' : ''}
-          </div>
-        </div>
-        <p>{getProductDescription()}</p>
+  renderSeeMoreButton() {
+    if (!this.state.seeMoreStatus) {
+      return (
         <p
           className="see-more is-clickable is-unselectable"
-          onClick={() => setSeeMoreStatus(true)}
+          onClick={() => this.setState({ seeMoreStatus: true })}
         >
-          {seeMoreStatus ? '' : 'See more.'}
+          See more.
         </p>
-        <button
-          className={`is-button ${
-            props.productInCart ? 'is-red' : 'is-green'
-          }`}
-          onClick={() => {
-            if (props.productInCart) {
-              props.removeProductFromCart(props.activeProduct.id);
-            } else {
-              props.addProductToCart(props.activeProduct);
-            }
-          }}
-        >
-          {props.productInCart ? 'Remove from cart' : 'Add to cart'}
-        </button>
+      );
+    }
+
+    return null;
+  }
+
+  onCartButtonClick = () => {
+    if (this.props.productInCart) {
+      this.props.removeProductFromCart(this.props.activeProduct.id);
+    } else {
+      this.props.addProductToCart(this.props.activeProduct);
+    }
+  };
+
+  render() {
+    const {
+      img,
+      name,
+      rate,
+      comments,
+      price,
+      basics,
+    } = this.props.activeProduct;
+
+    return (
+      <div className="product-detail is-display-flex is-align-items-center is-justify-content-center">
+        <img className="product-img" src={img} alt="Product icon" />
+        <div className="description">
+          <h1 className="has-text-weight-normal">{name}</h1>
+          <div className="is-display-flex is-align-items-center">
+            <RatingMeter rating={rate} width="20px" />
+            <div className="comments">
+              <span>{comments.length}</span>
+              <img className="icon" src={commentsIcon} alt="Comments icon" />
+            </div>
+          </div>
+          <div className="is-display-flex is-align-items-center">
+            <h2 className="has-text-weight-normal">${price}</h2>
+            <div className={basics ? 'type has-text-centered' : ''}>
+              {basics ? 'BASICS' : ''}
+            </div>
+          </div>
+          <p>{this.getProductDescription()}</p>
+          {this.renderSeeMoreButton()}
+          <button
+            className={`is-button ${
+              this.props.productInCart ? 'is-red' : 'is-green'
+            }`}
+            onClick={this.onCartButtonClick}
+          >
+            {this.props.productInCart ? 'Remove from cart' : 'Add to cart'}
+          </button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
   return {

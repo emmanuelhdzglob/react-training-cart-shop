@@ -10,15 +10,15 @@ import history from '../history';
 
 const App = () => {
   return (
-    <div>
+    <React.Fragment>
       <Router history={history}>
         <Route path="/" component={Navbar} />
         <Route path="/" exact component={MainPage} />
-        <Route path="/product/:productId" component={ProductPage} />
+        <Route path="/product/:productId" exact component={ProductPage} />
         <Route path="/payment" exact component={PaymentPage} />
         <Route path="/" component={Cart} />
       </Router>
-    </div>
+    </React.Fragment>
   );
 };
 
