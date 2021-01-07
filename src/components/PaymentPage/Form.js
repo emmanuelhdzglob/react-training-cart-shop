@@ -36,7 +36,7 @@ class Form extends Component {
       },
     };
 
-    this.props.placeOrder(formattedValues);
+    return this.props.placeOrder(formattedValues);
   };
 
   render() {
@@ -45,7 +45,7 @@ class Form extends Component {
         id="payment-form"
         onSubmit={this.props.handleSubmit(this.onSubmit)}
       >
-        <h4>Shipping data:</h4>
+        <h4 className="has-text-weight-normal">Shipping data:</h4>
         <div className="form-section">
           <div className="field-box is-display-flex">
             <Field name="name" label="Name" component={this.renderInput} />
@@ -79,7 +79,7 @@ class Form extends Component {
             />
           </div>
         </div>
-        <h4>Credit Cart data:</h4>
+        <h4 className="has-text-weight-normal">Credit Cart data:</h4>
         <div className="form-section">
           <div className="field-box is-display-flex">
             <Field

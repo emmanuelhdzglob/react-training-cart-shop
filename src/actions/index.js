@@ -1,3 +1,4 @@
+import { SubmissionError } from 'redux-form';
 import mockAPI from '../apis/mockAPI';
 import history from '../history';
 import {
@@ -95,12 +96,18 @@ export const changeSort = (sortCriteria) => {
 
 // Action creators to handle PaymentForm requests.
 export const placeOrder = (formValues) => async (dispatch) => {
-  try {
-    const response = await mockAPI.post('/order', formValues);
+  return mockAPI
+    .post('/order', formValues)
+    .then((res) => {
+      dispatch({ type: PLACE_ORDER, payload: res.data.message });
+      history.push('/payment/success');
+    })
+    .catch(() => {
+      dispatch({ type: PLACE_ORDER, payload: 'failed' });
 
-    dispatch({ type: PLACE_ORDER, payload: response.data });
-    history.push('/payment/success');
-  } catch (err) {
-    console.log(err);
-  }
+      throw new SubmissionError({
+        creditCardData: 'Wrong data!',
+        _error: 'Some fields are wrong!',
+      });
+    });
 };

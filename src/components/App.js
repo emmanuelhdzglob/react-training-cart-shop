@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import MainPage from './MainPage';
 import ProductPage from './ProductPage';
 import PaymentPage from './PaymentPage';
+import SuccessPage from './SuccessPage';
 import Cart from './Cart';
 import history from '../history';
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/" exact component={MainPage} />
         <Route path="/product/:productId" exact component={ProductPage} />
         <Route path="/payment" exact component={PaymentPage} />
+        <Route path="/payment/success" exact component={SuccessPage} />
         <Route path="/" component={Cart} />
       </Router>
     </React.Fragment>
