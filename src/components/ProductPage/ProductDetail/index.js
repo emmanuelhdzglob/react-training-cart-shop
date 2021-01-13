@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RatingMeter from '../RatingMeter';
-import { addProductToCart, removeProductFromCart } from '../../actions';
+import RatingMeter from '../../RatingMeter';
+import { addProductToCart, removeProductFromCart } from '../../../actions';
+import commentsIcon from '../../../assets/comment.png';
 import './ProductDetail.scss';
-import commentsIcon from '../../assets/comment.png';
 
 class ProductDetail extends Component {
   state = { seeMoreStatus: false };

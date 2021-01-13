@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { openCart } from '../actions';
+import { openCart } from '../../actions';
 import './Navbar.scss';
-import logo from '../assets/globant-shops.svg';
-import cartImg from '../assets/cart.svg';
+import logo from '../../assets/globant-shops.svg';
+import cartImg from '../../assets/cart.svg';
 
 const Navbar = ({ cart, openCart, location }) => {
   return (

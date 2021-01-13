@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { goToProduct, resetProductDetail } from '../../actions';
 import ProductDetail from './ProductDetail';
 import CommentsSection from './CommentsSection';
-import { goToProduct, resetProductDetail } from '../../actions';
 
 const ProductPage = (props) => {
   const { match, goToProduct, resetProductDetail } = props;

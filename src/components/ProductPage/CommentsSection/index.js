@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './CommentsSection.scss';
-import Comment from './Comment';
+import Comment from '../Comment';
 
 const CommentsSection = ({ userComments }) => {
   const renderedComments = userComments.map((_comment) => {

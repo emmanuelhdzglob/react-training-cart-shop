@@ -1,7 +1,7 @@
 import React from 'react';
-import star from '../assets/star-rate.svg';
-import starHalf from '../assets/star-rate-half.svg';
-import starEmpty from '../assets/star-rate-empty.svg';
+import star from '../../assets/star-rate.svg';
+import starHalf from '../../assets/star-rate-half.svg';
+import starEmpty from '../../assets/star-rate-empty.svg';
 
 const RatingMeter = ({ rating, width }) => {
   const getStars = () => {

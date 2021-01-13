@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import './Form.scss';
-import { placeOrder } from '../../actions';
+import { placeOrder } from '../../../actions';
 
 class Form extends Component {
   renderInput({ input, label, width }) {

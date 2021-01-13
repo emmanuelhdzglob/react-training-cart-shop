@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addProductToCart } from '../../actions';
+import { addProductToCart } from '../../../actions';
 import './ProductCard.scss';
-import commentsIcon from '../../assets/comment.png';
-import RatingMeter from '../RatingMeter';
+import commentsIcon from '../../../assets/comment.png';
+import RatingMeter from '../../RatingMeter';
 
 const ProductCard = ({ product, addProductToCart }) => {
   if (!product) {

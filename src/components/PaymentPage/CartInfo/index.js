@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import './CartInfo.scss';
-import CartProduct from '../Cart/CartProduct';
+import CartProduct from '../../Cart/CartProduct';
 
 const CartInfo = ({ cart, error }) => {
   const renderedCartProducts = cart.map((product) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import successIcon from '../../assets/success1.webp';
+import successIcon from '../../../assets/success1.webp';
 import './Success.scss';
 
 const Success = () => {
