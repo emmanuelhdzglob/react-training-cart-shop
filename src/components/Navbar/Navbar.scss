@@ -19,13 +19,20 @@
     display: block;
   }
 
-  div {
+  .cart-btn {
+    background-color: transparent;
+    border: none;
     position: relative;
   }
 
-  span {
+  .cart-btn:focus {
+    border: none;
+    outline: none;
+  }
+
+  .cart-items {
     position: absolute;
-    left: 28px;
+    left: 40px;
     background-color: #df4d3f;
     width: 24px;
     height: 24px;
