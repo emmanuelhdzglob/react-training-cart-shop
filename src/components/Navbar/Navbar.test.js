@@ -23,7 +23,7 @@ const commonProps = {
 
 describe('Navbar component', () => {
   describe('Any route except /payment', () => {
-    let navbar;
+    let Navbar;
     let props;
     beforeEach(() => {
       props = {
@@ -33,26 +33,26 @@ describe('Navbar component', () => {
         },
       };
 
-      navbar = setUp(props);
+      Navbar = setUp(props);
     });
 
     it('Should render without problems.', () => {
-      const htmlNavbar = navbar.getByTestId('navbar');
+      const htmlNavbar = Navbar.getByTestId('navbar');
       expect(htmlNavbar).toBeInTheDocument();
     });
 
     it('Should render the logo of the company.', () => {
-      const logo = navbar.getByTestId('company-logo');
+      const logo = Navbar.getByTestId('company-logo');
       expect(logo).toBeInTheDocument();
     });
 
     it('Shows the cart button.', () => {
-      const cartBtn = navbar.getByTestId('cart-btn');
+      const cartBtn = Navbar.getByTestId('cart-btn');
       expect(cartBtn).toBeInTheDocument();
     });
 
     it('Should execute openCart on cart button click.', () => {
-      const cartBtn = navbar.getByTestId('cart-btn');
+      const cartBtn = Navbar.getByTestId('cart-btn');
 
       fireEvent.click(cartBtn);
 
@@ -60,13 +60,13 @@ describe('Navbar component', () => {
     });
 
     it('Renders the length of the cart.', () => {
-      const lengthSpan = navbar.getByTestId('cart-length');
+      const lengthSpan = Navbar.getByTestId('cart-length');
       expect(parseInt(lengthSpan.innerHTML)).toEqual(2);
     });
   });
 
   describe('/payment route', () => {
-    let navbar;
+    let Navbar;
     let props;
     beforeEach(() => {
       props = {
@@ -76,21 +76,21 @@ describe('Navbar component', () => {
         },
       };
 
-      navbar = setUp(props);
+      Navbar = setUp(props);
     });
 
     it('Should render without problems.', () => {
-      const htmlNavbar = navbar.getByTestId('navbar');
+      const htmlNavbar = Navbar.getByTestId('navbar');
       expect(htmlNavbar).toBeInTheDocument();
     });
 
     it('Should render the logo of the company.', () => {
-      const logo = navbar.getByTestId('company-logo');
+      const logo = Navbar.getByTestId('company-logo');
       expect(logo).toBeInTheDocument();
     });
 
     it('Should NOT render cart button.', () => {
-      const btnContainer = navbar.getByTestId('cart-btn-container');
+      const btnContainer = Navbar.getByTestId('cart-btn-container');
       expect(btnContainer.childElementCount).toBe(0);
     });
   });

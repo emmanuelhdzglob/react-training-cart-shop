@@ -6,19 +6,25 @@ import './ProductCard.scss';
 import commentsIcon from '../../../assets/comment.png';
 import RatingMeter from '../../RatingMeter';
 
-const ProductCard = ({ product, addProductToCart }) => {
+export const ProductCard = ({ product, addProductToCart }) => {
   if (!product) {
     return null;
   }
 
   return (
-    <div className="card">
+    <div className="card" data-testid="card-container">
       <div
         className={product.basics ? 'type is-green has-text-centered' : 'type'}
+        data-testid="basics"
       >
         {product.basics ? 'BASICS' : ''}
       </div>
-      <img className="product-img" src={product.img} alt="Product icon" />
+      <img
+        className="product-img"
+        src={product.img}
+        alt="Product icon"
+        data-testid="product-img"
+      />
       <div className="description has-text-left">
         <p className="title">{product.name}</p>
         <div className="info">
@@ -26,19 +32,28 @@ const ProductCard = ({ product, addProductToCart }) => {
             <RatingMeter rating={product.rate} width="10px" />
           </div>
           <div className="comments">
-            <span className="comments-number">{product.comments}</span>
+            <span className="comments-number" data-testid="comment-counter">
+              {product.comments}
+            </span>
             <img className="icon" alt="Comments icon" src={commentsIcon} />
           </div>
         </div>
-        <p className="price has-text-weight-semibold">${product.price}</p>
+        <p className="price has-text-weight-semibold" data-testid="price">
+          ${product.price}
+        </p>
       </div>
       <div>
-        <Link className="is-blue is-button" to={`/product/${product.id}`}>
+        <Link
+          className="is-blue is-button"
+          to={`/product/${product.id}`}
+          data-testid="product-link"
+        >
           See details
         </Link>
         <button
           className="is-green is-button"
           onClick={() => addProductToCart(product)}
+          data-testid="add-btn"
         >
           Add to cart
         </button>
