@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { removeProductFromCart } from '../../../actions';
 import './CartProduct.scss';
 
-const CartProduct = ({ product, removeProductFromCart }) => {
+export const CartProduct = ({ product, removeProductFromCart }) => {
   if (!product) {
     return null;
   }

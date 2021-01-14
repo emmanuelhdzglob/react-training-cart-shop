@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { closeCart } from '../../actions';
-import './Cart.scss';
 import CartProduct from './CartProduct';
+import closeIcon from '../../assets/close.png';
+import './Cart.scss';
 
-const Cart = ({ cart, cartIsOpened, closeCart, location }) => {
+export const Cart = ({ cart, cartIsOpened, closeCart, location }) => {
+  const isInPaymentRoute = location.pathname === '/payment';
+
   // If the cart is opened disable overflow Y for body.
   useEffect(() => {
     if (cartIsOpened) {
@@ -19,7 +22,7 @@ const Cart = ({ cart, cartIsOpened, closeCart, location }) => {
 
   // Closes the cart when is empty.
   useEffect(() => {
-    if (!cart.length || location.pathname === '/payment') {
+    if (!cart.length || isInPaymentRoute) {
       closeCart();
     }
   }, [cart.length, location.pathname, closeCart]);
@@ -33,29 +36,43 @@ const Cart = ({ cart, cartIsOpened, closeCart, location }) => {
     return <CartProduct productId={product.id} key={product.id} />;
   });
 
-  if (!cartIsOpened) {
+  if (!cartIsOpened || !cart.length || isInPaymentRoute) {
     return null;
   }
 
   return (
-    <div className="cart-bg">
-      <div className="cart">
-        <div className="close-btn" onClick={closeCart}>
-          <span className="bar first-diagonal"></span>
-          <span className="bar second-diagonal"></span>
-        </div>
+    <div className="cart-bg" data-testid="cart-bg">
+      <div className="cart" data-testid="cart">
+        <button
+          className="close-btn"
+          onClick={closeCart}
+          data-testid="close-btn"
+        >
+          <img src={closeIcon} alt="Close Button Icon" />
+        </button>
         <h2 className="has-text-weight-normal">Cart:</h2>
         <p>
-          Subtotal: <span className="has-text-weight-bold">${totalPrice}</span>
+          Subtotal:{' '}
+          <span className="has-text-weight-bold" data-testid="price">
+            ${totalPrice}
+          </span>
         </p>
-        <Link className="is-blue is-button" to="/payment">
+        <Link
+          className="is-blue is-button"
+          to="/payment"
+          data-testid="payment-link-1"
+        >
           Proceed to payment
         </Link>
-        <div>{renderedCartProducts}</div>
+        <div data-testid="product-container">{renderedCartProducts}</div>
         <p>
           Subtotal: <span className="has-text-weight-bold">${totalPrice}</span>
         </p>
-        <Link className="is-blue is-button" to="/payment">
+        <Link
+          className="is-blue is-button"
+          to="/payment"
+          data-testid="payment-link-2"
+        >
           Proceed to payment
         </Link>
       </div>

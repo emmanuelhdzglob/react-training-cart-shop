@@ -32,28 +32,22 @@
   }
 
   .close-btn {
+    background-color: transparent;
+    border: none;
     cursor: pointer;
     position: absolute;
-    width: 25px;
     height: 25px;
     top: 30px;
     right: 20px;
+
+    img {
+      display: block;
+      width: 25px;
+      height: 25px;
+    }
   }
 
-  .bar {
-    display: block;
-    position: relative;
-    top: 50%;
-    width: 25px;
-    height: 1px;
-    background-color: black;
-  }
-
-  .bar.first-diagonal {
-    transform: rotate(45deg);
-  }
-
-  .bar.second-diagonal {
-    transform: rotate(-45deg);
+  .close-btn:focus {
+    outline: 0 !important;
   }
 }
